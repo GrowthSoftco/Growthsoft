@@ -31,7 +31,7 @@ const { action = "/api" } = Astro.props;
                 inputId="username"
             />
         </Label>
-        <Label htmlFor="passwd" labelText="Password" isPasswordInput>
+        <Label htmlFor="passwd" labelText="Password" isPasswordInput passwordRedirect='/'>
             <Input
                 inputType="password"
                 inputName="password"
