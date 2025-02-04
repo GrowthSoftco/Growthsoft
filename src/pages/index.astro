@@ -1,11 +1,13 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import AuthLayout from '@layouts/AuthLayout.astro';
+import Auth from '@components/Auth/index.astro';
+import '@styles/global.css';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<AuthLayout Favicon='/favicon.svg' Title='Auth' Language='en'>
+	<section class='w-screen h-screen grid grid-cols-1 md:grid-cols-2'>
+		<Auth />
+		<section class='bg-[url(/bgimg.webp)] bg-cover hidden md:block'>
+		</section>
+	</section>
+</AuthLayout>

@@ -1,0 +1,35 @@
+---
+import type { ProjectTitle, ProjectLanguage, ProjectFavicon } from '@types';
+import '@styles/global.css';
+
+interface Props {
+	Title: ProjectTitle;
+	Language?: ProjectLanguage;
+	Favicon?: ProjectFavicon;
+}
+
+const { Title, Language = 'en', Favicon = 'favicon.svg' } = Astro.props;
+---
+
+<!doctype html>
+<html lang={ Language }>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href={ Favicon } />
+		<meta name="generator" content={Astro.generator} />
+		<title>Growth | { Title }</title>
+	</head>
+	<body class='dark:bg-stone-950 selection:text-blue-500 selection:bg-blue-950 text-white prose lg:prose-xl'>
+		<slot />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
