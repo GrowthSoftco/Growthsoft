@@ -1,5 +1,6 @@
 ---
 import type { ProjectTitle, ProjectLanguage, ProjectFavicon } from '@types';
+import Sidebar from '@components/Dashboard/Sidebar/index.astro';
 import '@styles/global.css';
 
 interface Props {
@@ -20,7 +21,8 @@ const { Title, Language = 'en', Favicon = 'favicon.svg' } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>Growth | { Title }</title>
 	</head>
-	<body class='dark:bg-stone-950 selection:text-blue-500 selection:bg-blue-950 text-white prose lg:prose-xl'>
+	<body class='dark:bg-stone-950 selection:text-blue-500 selection:bg-blue-950 text-white prose lg:prose-xl flex h-screen'>
+		<Sidebar />
 		<slot />
 	</body>
 </html>

@@ -1,0 +1,70 @@
+---
+import { DashboardLinks } from "@types";
+import { Icon } from "astro-icon/components";
+
+const isOpen = false;
+
+---
+
+{ 
+    isOpen ? (
+
+    <div class="w-64 bg-neutral-900 border-r border-neutral-800 h-full">
+    <div class="py-4 px-6 flex items-center gap-2">
+        <Icon name='logo'/>
+        <a href="/" class="font-thin"> Growth </a>
+    </div>
+
+    <div>
+        <ul>
+            {
+                DashboardLinks.map(({ icon, label, href }) => (
+                    <a href={href}>
+                        <li class="flex items-center gap-4 justify-between  py-3 px-4 text-neutral-500 font-semibold hover:bg-neutral-950 hover:text-neutral-200 hover:cursor-pointer hover:font-medium mr-2 hover:rounded-r-lg">
+                            <Icon name={icon} class="font-semibold" />
+                            <a href={href} class='w-full'>{label}</a>
+                            <span>
+                            &RightArrow;
+                            </span>
+                        </li>
+                    </a>
+                ))
+            }
+            
+            <li class='flex items-center gap-4 justify-between  py-3 px-4 text-neutral-500 font-semibold hover:bg-neutral-950 hover:text-red-200 hover:cursor-pointer hover:font-medium mr-2 hover:rounded-r-lg'>
+                <Icon name='Sidebar/logout' class="font-semibold" />
+                <a href="/" class='w-full'>Logout</a>
+                &RightArrow;
+            </li>
+        </ul>
+    </div>
+</div>
+
+    ) : (
+
+    <div class="w-20 bg-neutral-900 border-r border-neutral-800 py-2 h-full ">
+    <div class="py-4 px-6 flex justify-center items-center gap-2">
+        <Icon name='logo' class='text-2xl'/>
+    </div>
+
+    <div class='flex justify-center'>
+        <ul>
+            {
+                DashboardLinks.map(({ icon, label, href }) => (
+                    <a href={href}>
+                        <li class="flex items-center gap-4 justify-between  py-3 px-4 text-neutral-500 font-semibold hover:bg-neutral-950 hover:text-neutral-200 hover:cursor-pointer hover:font-medium mx-2 hover:rounded-lg">
+                            <Icon name={icon} class="font-semibold text-xl" />
+                        </li>
+                    </a>
+                ))
+            }
+            
+            <li class='flex items-center gap-4 justify-between  py-3 px-4 text-neutral-500 font-semibold hover:bg-neutral-950 hover:text-red-200 hover:cursor-pointer hover:font-medium mx-2 hover:rounded-lg'>
+                <Icon name='Sidebar/logout' class="text-xl" />
+            </li>
+        </ul>
+    </div>
+</div>
+
+    )
+}
