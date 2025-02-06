@@ -1,99 +1,38 @@
 ---
 import { DashboardLinks } from "@types";
 import { Icon } from "astro-icon/components";
-
-const isOpen: boolean = false;
 ---
 
-<div
-    id="sidebar"
-    data-status={isOpen ? "open" : "close"}
-    class:list={[
-        "transition-all duration-300 bg-neutral-900 border-r border-neutral-800 h-full",
-        isOpen ? "w-64" : "w-20",
-    ]}
->
-    <div class="">
-        <a href="/">
-            <Icon
-                name="logo"
-                class:list={["", isOpen ? "text-2xl" : "w-10 text-2xl"]}
-            />
-        </a>
-    </div>
-
-    <div class:list={["px-3 py-4", isOpen ? "flex" : "w-full flex"]}>
-        <ul
-            class:list={[
-                "w-full",
-                isOpen
-                    ? ""
-                    : "content-center items-center justify-center m-auto",
-            ]}
-        >
-            {
-                DashboardLinks.map(({ icon, label, href }) => (
-                    <a
-                        href={href}
-                        class="flex gap-4 justify-between text-neutral-500 font-semibold hover:bg-neutral-950 hover:text-neutral-200 hover:cursor-pointer hover:font-medium mr-2 hover:rounded-r-lg"
-                    >
-                        a
-                    </a>
-                ))
-            }
-        </ul>
-    </div>
-</div>
-
-<script>
-    function initializeSidebar() {
-        const sidebar = document.getElementById("sidebar");
-        if (!sidebar) return;
-
-        // Load saved state from localStorage
-        const savedState = localStorage.getItem("sidebarState");
-        if (savedState) {
-            sidebar.dataset.state = savedState;
-            updateSidebarClass(sidebar, savedState === "open");
+<nav class="bg-black w-[4.8rem] transition-all min-h-screen flex flex-col">
+    <div>
+      <Icon name="logo" class="text-white w-full my-8 text-2xl" />
+      <ul>
+        {
+          DashboardLinks.map(({ href, icon, label }) => (
+            <li class="text-white relative group">
+              <a href={href} class="flex gap-4">
+                <Icon 
+                  name={icon} 
+                  class="text-white mx-auto my-5 transition-transform group-hover:scale-110" 
+                  id="icon" 
+                />
+                <span class="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-neutral-900 text-xs text-white rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                  {label}
+                </span>
+              </a>
+            </li>
+          ))
         }
-
-        // Listen for Ctrl + S or Cmd + S (for Mac users)
-        document.addEventListener(
-            "keydown",
-            (e) => {
-                // Check for Ctrl+S or Cmd+S (Mac)
-                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
-                    // Prevent the default browser save action
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    const currentState = sidebar.dataset.state;
-                    const newState =
-                        currentState === "open" ? "closed" : "open";
-
-                    // Update state
-                    sidebar.dataset.state = newState;
-                    localStorage.setItem("sidebarState", newState);
-                    updateSidebarClass(sidebar, newState === "open");
-
-                    // Prevent any other handlers from executing
-                    return false;
-                }
-            },
-            { capture: true },
-        ); // Use capture phase to intercept before other handlers
-    }
-
-    function updateSidebarClass(sidebar: HTMLElement, isOpen: boolean) {
-        if (isOpen) {
-            sidebar.classList.remove("w-20");
-            sidebar.classList.add("w-64");
-        } else {
-            sidebar.classList.remove("w-64");
-            sidebar.classList.add("w-20");
-        }
-    }
-
-    // Initialize when the DOM is ready
-    document.addEventListener("DOMContentLoaded", initializeSidebar);
-</script>
+      </ul>
+    </div>
+    <button
+      class="flex items-center justify-center text-center w-full py-8 cursor-pointer relative group mt-auto"
+      id="logout"
+      type="submit"
+    >
+      <Icon name="Sidebar/logout" class="text-white" />
+      <span class="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-red-900 text-xs text-red-200 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+        Cerrar sesión
+      </span>
+    </button>
+</nav>
