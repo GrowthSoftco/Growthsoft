@@ -2,6 +2,8 @@ export type ProjectTitle = string;
 export type ProjectLanguage = string;
 export type ProjectFavicon = string;
 
+export const ProjectVersion = 'v0.0.1-alpha';
+
 export const DashboardLinks = [
     { icon: 'Sidebar/home', label: 'Home', href: '/dashboard'},
     { icon: 'Sidebar/users', label: 'Users', href: '/dashboard/users'},

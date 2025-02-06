@@ -1,11 +1,21 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import LogoD from '@assets/logo/LogoD.svg';
+import Announcement from '@components/Dashboard/Announcement/index.astro';
+import { ProjectVersion } from '@types';
 
+import H1 from '@components/Typography/H1.astro';
+
+const User = 'Ian'
 ---
 
 <BaseLayout Title='Home'>
-  <div class='flex justify-center items-center gap-4 h-screen opacity-10 m-auto'>
-    <img src={ LogoD.src } alt="Logo" class='w-10 animate-pulse select-none'>
-</div>
+  
+  <section class='flex-col justify-center m-auto text-center'>
+    <Announcement label={ ProjectVersion }/>
+    <H1>Hello, { User }👋</H1>
+    <section>
+      
+    </section>
+  </section>
+
 </BaseLayout>
